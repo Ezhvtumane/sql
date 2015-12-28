@@ -99,3 +99,25 @@ case when (ctxtOtd like '%поликл%' or ctxtOtd like '%детск%') then 1 else 0 end 
 			group by DTXTNameILL, DocUNID, CRFromFLD,iss,test,IssKol,Ediniz,ctxtOtd
 )			 t -- число отпущенных услуг 0-17
 
+--рефлексотерапия
+select COUNT(*), SUM(amb_pac), sum(ds_pac) from 
+	(
+	select ps.DTXTNameILL, CRFromFLD,ctxtOtd, 
+			case when (ctxtOtd like '%поликл%' or ctxtOtd like '%детск%') then 1 else 0 end amb_pac,
+			case when (ctxtOtd like '%Дневной стационар при поликлинике%') then 1 else 0 end ds_pac
+		from iskstat2.dbo.PatientServices ps
+			where ps.datDateVizit between @date1 and @date2 and (iss like 'физио%' or iss like 'массаж%') and  test like '%пунктурная тер%'-- and ctxtOtd='Отделение сосудистой хирургии'
+				group by ps.DTXTNameILL, CRFromFLD,ctxtOtd
+	) t --Число лиц закончивших лечение
+	
+union all
+
+select COUNT(*), SUM(amb_pac), sum(ds_pac)  from
+	(
+	select DTXTNameILL, DocUNID, CRFromFLD,iss, test,IssKol , Ediniz, (IssKol*Ediniz) ed,
+			case when (ctxtOtd like '%поликл%' or ctxtOtd like '%детск%') then 1 else 0 end amb_pac,
+			case when (ctxtOtd like '%Дневной стационар при поликлинике%') then 1 else 0 end ds_pac
+		FROM [IskStat2].[dbo].[PatientServices]
+			where datDateVizit between @date1 and @date2 and (iss like 'физио%' or iss like 'массаж%') and  test like '%пунктурная тер%'
+				group by DTXTNameILL, DocUNID, CRFromFLD,iss,test,IssKol,Ediniz,ctxtOtd
+	) t -- число отпущенных услуг всего
