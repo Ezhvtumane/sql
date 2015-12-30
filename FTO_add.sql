@@ -2,7 +2,7 @@ declare @date1 datetime = '01.01.2015'
 declare @date2 datetime = '30.12.2015'
 
 --ФТО
-select COUNT(*), SUM(amb_pac), sum(ds_pac) from 
+select 'Число лиц, закончивших лечение, - всего', '1', COUNT(*), SUM(amb_pac), sum(ds_pac) from 
 	(
 	select ps.DTXTNameILL, CRFromFLD,ctxtOtd, 
 			case when (ctxtOtd like '%поликл%' or ctxtOtd like '%детск%') then 1 else 0 end amb_pac,
