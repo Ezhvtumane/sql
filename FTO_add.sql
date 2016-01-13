@@ -14,7 +14,7 @@ select 'Число лиц, закончивших лечение, - всего', '1', COUNT(*), SUM(amb_pac), s
 	
 union all
 
-select COUNT(*), SUM(amb_pac), sum(ds_pac) from 
+select 'из общего числа лиц, закончивших лечение - детей 0-17 лет включительно', '2', COUNT(*), SUM(amb_pac), sum(ds_pac) from 
 	(
 	select DTXTNameILL, CRFromFLD,ctxtOtd, 
 			case when (ctxtOtd like '%поликл%' or ctxtOtd like '%детск%') then 1 else 0 end amb_pac,
@@ -27,7 +27,7 @@ select COUNT(*), SUM(amb_pac), sum(ds_pac) from
 
 union all
 
-select COUNT(*), SUM(amb_pac), sum(ds_pac)  from
+select 'Число отпущеных процедур - всего', '3', COUNT(*), SUM(amb_pac), sum(ds_pac)  from
 	(
 	select DTXTNameILL, DocUNID, CRFromFLD,iss, test,IssKol , Ediniz, (IssKol*Ediniz) ed,
 			case when (ctxtOtd like '%поликл%' or ctxtOtd like '%детск%') then 1 else 0 end amb_pac,
@@ -39,7 +39,7 @@ select COUNT(*), SUM(amb_pac), sum(ds_pac)  from
 
 union all
 
-select COUNT(*), SUM(amb_pac), sum(ds_pac)  from
+select 'из них детям 0-17 лет включительно', '4', COUNT(*), SUM(amb_pac), sum(ds_pac)  from
 (
 select DTXTNameILL, DocUNID, CRFromFLD,iss, test,IssKol , Ediniz, (IssKol*Ediniz) ed,
 case when (ctxtOtd like '%поликл%' or ctxtOtd like '%детск%') then 1 else 0 end amb_pac,
@@ -51,7 +51,7 @@ case when (ctxtOtd like '%поликл%' or ctxtOtd like '%детск%') then 1 else 0 end 
 )			 t -- число отпущенных услуг 0-17
 
 --ЛФК
-select COUNT(*), SUM(amb_pac), sum(ds_pac) from 
+select 'Число лиц, закончивших лечение, - всего', '1', COUNT(*), SUM(amb_pac), sum(ds_pac) from 
 	(
 	select ps.DTXTNameILL, CRFromFLD,ctxtOtd, 
 			case when (ctxtOtd like '%поликл%' or ctxtOtd like '%детск%') then 1 else 0 end amb_pac,
@@ -63,7 +63,7 @@ select COUNT(*), SUM(amb_pac), sum(ds_pac) from
 	
 union all
 
-select COUNT(*), SUM(amb_pac), sum(ds_pac) from 
+select 'из общего числа лиц, закончивших лечение - детей 0-17 лет включительно', '2', COUNT(*), SUM(amb_pac), sum(ds_pac) from 
 	(
 	select DTXTNameILL, CRFromFLD,ctxtOtd, 
 			case when (ctxtOtd like '%поликл%' or ctxtOtd like '%детск%') then 1 else 0 end amb_pac,
@@ -76,7 +76,7 @@ select COUNT(*), SUM(amb_pac), sum(ds_pac) from
 
 union all
 
-select COUNT(*), SUM(amb_pac), sum(ds_pac)  from
+select 'Число отпущеных процедур - всего', '3', COUNT(*), SUM(amb_pac), sum(ds_pac)  from
 	(
 	select DTXTNameILL, DocUNID, CRFromFLD,iss, test,IssKol , Ediniz, (IssKol*Ediniz) ed,
 			case when (ctxtOtd like '%поликл%' or ctxtOtd like '%детск%') then 1 else 0 end amb_pac,
@@ -88,7 +88,7 @@ select COUNT(*), SUM(amb_pac), sum(ds_pac)  from
 
 union all
 
-select COUNT(*), SUM(amb_pac), sum(ds_pac)  from
+select 'из них детям 0-17 лет включительно', '4', COUNT(*), SUM(amb_pac), sum(ds_pac)  from
 (
 select DTXTNameILL, DocUNID, CRFromFLD,iss, test,IssKol , Ediniz, (IssKol*Ediniz) ed,
 case when (ctxtOtd like '%поликл%' or ctxtOtd like '%детск%') then 1 else 0 end amb_pac,
@@ -100,7 +100,7 @@ case when (ctxtOtd like '%поликл%' or ctxtOtd like '%детск%') then 1 else 0 end 
 )			 t -- число отпущенных услуг 0-17
 
 --рефлексотерапия
-select COUNT(*), SUM(amb_pac), sum(ds_pac) from 
+select 'Число лиц, закончивших лечение, - всего', '1', COUNT(*), SUM(amb_pac), sum(ds_pac) from 
 	(
 	select ps.DTXTNameILL, CRFromFLD,ctxtOtd, 
 			case when (ctxtOtd like '%поликл%' or ctxtOtd like '%детск%') then 1 else 0 end amb_pac,
@@ -112,7 +112,7 @@ select COUNT(*), SUM(amb_pac), sum(ds_pac) from
 	
 union all
 
-select COUNT(*), SUM(amb_pac), sum(ds_pac)  from
+select 'Число отпущеных процедур - всего', '2', COUNT(*), SUM(amb_pac), sum(ds_pac)  from
 	(
 	select DTXTNameILL, DocUNID, CRFromFLD,iss, test,IssKol , Ediniz, (IssKol*Ediniz) ed,
 			case when (ctxtOtd like '%поликл%' or ctxtOtd like '%детск%') then 1 else 0 end amb_pac,
